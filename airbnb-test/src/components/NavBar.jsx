@@ -6,6 +6,7 @@ import "react-calendar/dist/Calendar.css";
 import {BiSearchAlt} from 'react-icons/bi'
 import { Link, json } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
 import { SearchProductsByDate , getProducts} from "../store/productSlice";
 
 
@@ -89,7 +90,9 @@ const NavBar = () => {
         {!isSearch ? (
           <NavSearch showHide={showHide} />
         ) : (
-          <div className="  flex-col flex items-center ">
+          <motion.div  initial={{ scale:0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration:0.2 }} className=" flex-col flex items-center ">
             <div className={`w-[370px] h-[60px] flex justify-between items-center`}>
               <button>Stay</button>
               <button>Experiences</button>
@@ -168,11 +171,11 @@ const NavBar = () => {
                       <BiSearchAlt size={40}/>
                       <p className=" text-white font-semibold text-[20px]">search</p>
                     </button>
-                    <button className=' fixed left-[20%] top-10 w-12 h-8 bg-red-600 rounded-md text-white' onClick={()=>setItSearch(false)} >X</button>
+                    <button className=' relative -left-[800px] top-10 w-12 h-8 bg-red-600 rounded-md text-white' onClick={()=>setItSearch(false)} >X</button>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
 
