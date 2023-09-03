@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../components/Card';
 import {  getProducts } from '../store/productSlice';
+import { minmax } from '../store/minMaxSlice';
 const HomePage = () => {
     const dispatch=useDispatch()
     useEffect(()=>{
         dispatch(getProducts())
+        dispatch(minmax())
     },[])
     
     const {data,loading} =useSelector((state)=>state.products)

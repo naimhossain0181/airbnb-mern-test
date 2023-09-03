@@ -36,7 +36,6 @@ export const filters = createAsyncThunk(
     "filters",
     async (query) => {
       const response = await axios.get(baseUrl + "filters", { params: query });
-      console.log(response)
       return response;
     }
   );
@@ -47,18 +46,15 @@ const productSlice = createSlice({
   name: "product",
   initialState: {
     data: [],
-    category: {
-      categories: [],
-      loading: true,
-      error: null,
-    },
-    minMaxPrice:'',
+    category:'',
     loading: true,
     error: null,
   },
+
   reducers: {
-    add(state, action) {},
+    filter(state, action) {},
   },
+
   extraReducers: (builder) => {
     builder.addCase(getProductsCategory.fulfilled, (state, action) => {
       state.category = action.payload;
@@ -110,6 +106,9 @@ const productSlice = createSlice({
       state.error = action.payload;
     });
 
+    // minmax
+
+    // filter
     builder.addCase(filters.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;

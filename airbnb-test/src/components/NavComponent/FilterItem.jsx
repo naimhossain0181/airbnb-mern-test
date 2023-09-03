@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useDispatch, useSelector } from 'react-redux';
@@ -54,22 +54,35 @@ const Property = [
         name: "Guesthouse"
     },
 ]
+
+
 const FilterItem = (props) => {
+    const [minPrice,setMinPrice]=useState(props.data.data.minmax.minPrice)
+    const [maxPrice,setMaxPrice]=useState(props.data.data.minmax.maxPrice)
     const products = useSelector((state) => state.products.data.data.data)
     const dispatch = useDispatch()
     const prices = products.map((item) => item.price)
-    const minPrice = Math.min(...prices);
-    const maxPrice = Math.max(...prices);
-    const [minInput, setMinInput] = useState(minPrice)
-    const [maxInput, setMaxnInput] = useState(maxPrice)
+
+    // const minPrice = Math.min(...prices);
+    // const maxPrice = Math.max(...prices);
+    // const [minInput, setMinInput] = useState(minPrice)
+    // const [maxInput, setMaxnInput] = useState(maxPrice)
 
     const [bed, setBed] = useState(0)
     const [bath, setBath] = useState(0)
     const [property, setProperty] = useState("House")
+
     const rangeHandller = (e) => {
         const [min, max] = e.target.value
-        setMinInput(min)
-        setMaxnInput(max)
+        setMinPrice(min)
+        setMaxPrice(max)
+    }
+    const minInputHandller=(e)=>{
+        setMinPrice(e.target.value)
+    }
+    const maxInputHanddler=(e)=>{
+        setMaxPrice(e.target.value)
+
     }
     const selectBedHanddler = (id) => {
         setBed(id)
@@ -85,8 +98,8 @@ const FilterItem = (props) => {
             "searchByPoperty": property,
             "Beds": bed,
             "Bathroom": bath,
-            "minPrice": minInput,
-            "maxPrice": maxInput
+            "minPrice": minPrice,
+            "maxPrice": maxPrice
         }
         dispatch(filters(filterData))
         props.setShow(false)
@@ -118,16 +131,16 @@ const FilterItem = (props) => {
                             <Slider
                                 track="inverted"
                                 aria-labelledby="track-inverted-range-slider"
-                                min={minPrice}
-                                max={maxPrice}
-                                defaultValue={[minPrice, maxPrice]}
+                                min={props.data.data.minmax.minPrice}
+                                max={props.data.data.minmax.maxPrice}
+                                value={[minPrice, maxPrice]}
                                 onChange={rangeHandller}
                             />
                         </Box>
                     </div>
                     <div className=" mr-12 ml-12 max-w-full grid grid-cols-2 gap-0 border-2 rounded-lg">
-                        <input type="number" value={minInput} className=" h-16 rounded-xl" />
-                        <input type="number" value={maxInput} className=" border-r-2 border-l-2 border-blue-100 h-16" />
+                        <input type="number" value={minPrice} onChange={minInputHandller} className=" h-16 rounded-xl" />
+                        <input type="number" value={maxPrice} onChange={maxInputHanddler} className=" border-r-2 border-l-2 border-blue-100 h-16" />
                     </div>
                 </div>
 
