@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 const Card = (props) => {
+
     return (
         
         <div className="w-2xl">

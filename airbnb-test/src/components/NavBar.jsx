@@ -76,7 +76,9 @@ const NavBar = () => {
   return (
     <div className=" z-10 fixed left-0 top-0 bg-white flex h-[80px] w-full justify-between items-center  border-b-[1px] ">
       <div className=" ml-11 w-1/3 justify-start">
-        <div className=" h-8 w-[100px]" onClick={()=>dispatch(getProducts())}>
+        <div className=" h-8 w-[100px]"   onClick={() => {
+              window.location.href = "/";
+            }}>
       <Link to="/">
           <img
             className=" h-full w-full object-fill"

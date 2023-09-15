@@ -6,20 +6,17 @@ export const getProducts = createAsyncThunk("getAllData", async () => {
   const response = await axios.get(baseUrl + "find");
   return response;
 });
-// get all category list
-export const getProductsCategory = createAsyncThunk("getCategory", async () => {
-  const response = await axios.get(baseUrl + "allcategory");
-  return response;
-});
+
 
 // search by category
 export const SearchProductsByCategory = createAsyncThunk(
   "SearchByCategory",
   async (query) => {
     const response = await axios.get(baseUrl + "findbycategory", {
-      params: query,
+      params: {name:query},
     });
     return response;
+
   }
 );
 
@@ -46,7 +43,6 @@ const productSlice = createSlice({
   name: "product",
   initialState: {
     data: [],
-    category:'',
     loading: true,
     error: null,
   },
@@ -56,17 +52,7 @@ const productSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(getProductsCategory.fulfilled, (state, action) => {
-      state.category = action.payload;
-      state.category.loading = false;
-    });
-    builder.addCase(getProductsCategory.pending, (state, action) => {
-      state.loading = true;
-    });
-    builder.addCase(getProductsCategory.rejected, (state, action) => {
-      state.category.loading = false;
-      state.error = action.payload;
-    });
+
     // producs
     builder.addCase(getProducts.fulfilled, (state, action) => {
       state.data = action.payload;

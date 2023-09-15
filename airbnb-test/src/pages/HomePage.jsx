@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Card from '../components/Card';
 import {  getProducts } from '../store/productSlice';
 import { minmax } from '../store/minMaxSlice';
+import { useNavigate } from 'react-router-dom';
 const HomePage = () => {
     const dispatch=useDispatch()
     useEffect(()=>{
         dispatch(getProducts())
-        dispatch(minmax())
     },[])
     
     const {data,loading} =useSelector((state)=>state.products)

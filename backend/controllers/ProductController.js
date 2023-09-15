@@ -109,8 +109,7 @@ exports.FindProduct =async (req,res)=>{
 }
 
 exports.FindProductByCategory =async (req,res)=>{
-    let searchBy=req.query.category
-    console.log(searchBy)
+    let searchBy=req.query.name
     try{
         const products= await ProductSchema.aggregate([
 
@@ -157,7 +156,6 @@ exports.FindProductByDate =async (req,res)=>{
     let checkOutDate=new Date(req.query.checkOutDate)
     let CountryName =req.query.CountryName
     let totalPerson=Number(req.query.totalPerson)
-    console.log(checkInDate,checkOutDate,CountryName,totalPerson)
     try{
         const products= await ProductSchema.aggregate([
             {
@@ -272,7 +270,6 @@ exports.FiltersProducts=async (req,res)=>{
 
 
             ])
-    console.log(products)
             await res.status(200).json({status:"success",data:products})
 
         }
