@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const baseUrl = "http://localhost:3000/v1/";
+const baseUrl = "https://airbnb-mern-1ucq06b8v-naimhossain0181.vercel.app/v1/";
 
 export const minmax = createAsyncThunk(
     "minmax",

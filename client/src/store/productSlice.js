@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const baseUrl = "http://localhost:3000/v1/";
+const baseUrl = "https://airbnb-mern-1ucq06b8v-naimhossain0181.vercel.app/v1/";
 // get productt list
 export const getProducts = createAsyncThunk("getAllData", async () => {
   const response = await axios.get(baseUrl + "find");

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const baseUrl = "http://localhost:3000/v1/";
+const baseUrl = "hhttps://airbnb-mern-1ucq06b8v-naimhossain0181.vercel.app/v1/";
 
 // get all category list
 export const getProductsCategory = createAsyncThunk("getCategory", async () => {
